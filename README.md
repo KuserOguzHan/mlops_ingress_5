@@ -6,7 +6,7 @@
 
 
 
-### 1. Deploy yaml files. 
+### 1. Deploy yaml filess. 
 
 
 #### a. Postgresql Deployment
@@ -228,5 +228,5 @@ kubectl get ingress
 
 ```
 kubectl delete ingress <ingress-name>
-```
+``` 
 
