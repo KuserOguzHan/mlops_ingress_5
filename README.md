@@ -6,36 +6,114 @@
 
 
 
-### 1. Pip Install
+### 1. Deploy yaml files. 
+
+
+#### a. Postgresql Deployment
+
+- You should be careful that firstly, pvc.yaml have to run than postgres-deployment.yaml file should be deployed.
 
 ```
-pip install -r requirements.txt
-```   
-
-### 2. Docker Compose
+kubectl apply -f postgres-pvc.yaml
+```
 
 ```
-docker-compose up -d
+kubectl get pods
+```
+
+```
+kubectl get deployments
+```
+
+```
+kubectl apply -f postgres-deployment.yaml
+```
+- Check the pods !
+
+```
+kubectl apply -f postgres-service.yaml
+```
+
+#### b. Fastapi Deployment
+
+```
+kubectl apply -f fastapi-deployment.yaml
+```
+
+```
+kubectl apply -f fastapi-service.yaml
 ```  
+
+``` 
+kubectl get services
+``` 
+
+#### c. Ingress Deployment
+
+``` 
+kubectl apply -f ingress.yaml
+``` 
+
+``` 
+kubectl get ingress
+``` 
+
+``` 
+minikube addons enable ingress
+``` 
+
+``` 
+kubectl get pods -n ingress-nginx
+``` 
+
+``` 
+minikube service --all
+``` 
+
+### 2. Minikube Arrange
+
+``` 
+minikube ip
+``` 
+
+``` 
+sudo nano /etc/hosts
+``` 
+
+- Press Ctrl + O (Write), then Enter (Confirm) to save changes and Ctrl + X (Exit) to exit.
+
+
+``` 
+192.168.49.2    yourdomain.com
+``` 
 
 
 ### 2. Connect Databese
 
 ``` 
-docker compose ps
+kubectl get pods
 ``` 
 
 ```
-docker exec -it container_name psql -U postgres
+kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres
 ```
 
-### 3. Authorise User
+```
+\l
+```
+### Show Tables
 
 ```
-grant all privileges on database postgres to postgres;
+\dt
+```
+### Show information
 
 ```
-### 4. Use information of project data
+select * from create_data;
+```
+
+
+### 3. Use information of project data
 
 Samsung,64.0,4.0,6.5,5000.0,8.0,48.0,2.0,2.0,2.0,2.999
 ```
@@ -113,18 +191,42 @@ iPhone,64.0,4.0,6.1,3110.0,12.0,12.0,12.0,0.0,0.0,11.199
 }
 ```
 
-### 4. Show Database
+
+### 5. Delete
+
+#### 
+```
+kubectl get deployments
+```
 
 ```
-\l
+kubectl delete deployment <deployment-name>
 ```
-### Show Tables
+
+#### 
+```
+kubectl get services
+```
 
 ```
-\dt
+kubectl delete service <service-name>
 ```
-### Show information
+
+#### 
+```
+kubectl get pods
+```
 
 ```
-select * from create_data;
+kubectl delete pod <pod-name>
 ```
+
+#### 
+```
+kubectl get ingress
+```
+
+```
+kubectl delete ingress <ingress-name>
+```
+
