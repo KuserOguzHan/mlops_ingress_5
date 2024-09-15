@@ -1,10 +1,4 @@
-- The project aims to learn and apply docker-compose issues.
-
-- All features of FastApi were utilized.
-
-- The challenge is the deployment of the Postgresql database and FastApi simultaneously.
-
-
+- How to use fastapi, postgresql and kubernetes.
 
 ### 1. Deploy yaml filess. 
 
