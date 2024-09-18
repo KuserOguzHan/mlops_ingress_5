@@ -224,3 +224,24 @@ kubectl get ingress
 kubectl delete ingress <ingress-name>
 ``` 
 
+#### 
+```
+kubectl get pvc
+```
+
+```
+kubectl delete pvc <pvc-name>
+```
+
+#### 
+```
+kubectl get pv
+```
+
+```
+kubectl delete pv <pv-name>
+```
+
+
+
+
